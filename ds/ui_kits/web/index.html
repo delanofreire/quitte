@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Quitte — Web Dashboard UI Kit</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700;800&family=Barlow+Condensed:wght@700;800;900&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { background: #EEF3F6; font-family: 'Inter', sans-serif; min-height: 100vh; }
+</style>
+</head>
+<body>
+<div id="root"></div>
+<script type="text/babel">
+const { useState } = React;
+
+/* ── Tokens ── */
+const T = {
+  teal600: '#1C6278', teal700: '#1A607A', teal800: '#134F65',
+  teal500: '#237494', teal400: '#2D8BAD', teal300: '#4AA5C4',
+  teal100: '#AEDCE8', teal75: '#D2EEF4', teal50: '#E8F5F8', teal25: '#EEF3F6',
+  gray900: '#111827', gray800: '#1F2937', gray700: '#374151',
+  gray600: '#4B5563', gray500: '#6B7280', gray400: '#9CA3AF',
+  gray300: '#D1D5DB', gray200: '#E5E7EB', gray100: '#F3F4F6', white: '#fff',
+  green500: '#10B981', green50: '#ECFDF5', green700: '#047857', green100: '#D1FAE5',
+  amber500: '#F59E0B', amber50: '#FFFBEB', amber700: '#B45309', amber100: '#FEF3C7',
+  red500: '#EF4444', red50: '#FEF2F2', red700: '#B91C1C', red100: '#FEE2E2',
+};
+
+/* ── Icons (Lucide-style inline SVG) ── */
+const Icon = ({ d, size = 20, color = 'currentColor', strokeWidth = 1.8 }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth={strokeWidth} strokeLinecap="round" strokeLinejoin="round">
+    {Array.isArray(d) ? d.map((p, i) => <path key={i} d={p} />) : <path d={d} />}
+  </svg>
+);
+
+const icons = {
+  home: ['M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z', 'M9 22V12h6v10'],
+  chart: ['M18 20V10', 'M12 20V4', 'M6 20v-6'],
+  wallet: ['M21 12V7H5a2 2 0 0 1 0-4h14v4', 'M3 5v14a2 2 0 0 0 2 2h16v-5', 'M18 12a1 1 0 0 0 0 2 1 1 0 0 0 0-2'],
+  target: ['M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z', 'M12 18a6 6 0 1 0 0-12 6 6 0 0 0 0 12z', 'M12 14a2 2 0 1 0 0-4 2 2 0 0 0 0 4z'],
+  bell: ['M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9', 'M13.73 21a2 2 0 0 1-3.46 0'],
+  settings: ['M12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6z','M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z'],
+  plus: ['M12 5v14', 'M5 12h14'],
+  trending: ['M23 6l-9.5 9.5-5-5L1 18', 'M17 6h6v6'],
+  credit: ['M1 4h22v16H1z', 'M1 10h22'],
+  logout: ['M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4','M16 17l5-5-5-5','M21 12H9'],
+};
+
+/* ── Sidebar ── */
+function Sidebar({ active, setActive }) {
+  const nav = [
+    { id: 'dashboard', label: 'Visão geral', icon: 'home' },
+    { id: 'debts', label: 'Dívidas', icon: 'credit' },
+    { id: 'budget', label: 'Orçamento', icon: 'wallet' },
+    { id: 'goals', label: 'Metas', icon: 'target' },
+    { id: 'reports', label: 'Relatórios', icon: 'chart' },
+  ];
+  return (
+    <aside style={{ width: 220, background: T.teal800, display: 'flex', flexDirection: 'column', flexShrink: 0, minHeight: '100vh' }}>
+      {/* Logo */}
+      <div style={{ padding: '24px 20px 20px', borderBottom: `1px solid rgba(255,255,255,0.08)` }}>
+        <img src="../../assets/quitte-logo.png" alt="Quitte" style={{ height: 28, filter: 'brightness(0) invert(1)', opacity: 0.95 }} />
+      </div>
+      {/* Nav */}
+      <nav style={{ flex: 1, padding: '12px 0' }}>
+        {nav.map(item => {
+          const isActive = active === item.id;
+          return (
+            <button key={item.id} onClick={() => setActive(item.id)} style={{
+              display: 'flex', alignItems: 'center', gap: 12, width: '100%',
+              padding: '10px 20px', border: 'none', cursor: 'pointer',
+              background: isActive ? 'rgba(255,255,255,0.12)' : 'transparent',
+              borderLeft: isActive ? `3px solid ${T.teal300}` : '3px solid transparent',
+              color: isActive ? '#fff' : 'rgba(255,255,255,0.6)',
+              fontFamily: 'Inter', fontSize: 14, fontWeight: isActive ? 600 : 400,
+              transition: 'all 150ms',
+            }}>
+              <Icon d={icons[item.icon]} size={18} color={isActive ? T.teal300 : 'rgba(255,255,255,0.5)'} />
+              {item.label}
+            </button>
+          );
+        })}
+      </nav>
+      {/* User */}
+      <div style={{ padding: '16px 20px', borderTop: `1px solid rgba(255,255,255,0.08)`, display: 'flex', alignItems: 'center', gap: 10 }}>
+        <div style={{ width: 34, height: 34, borderRadius: '50%', background: T.teal400, display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: 'Barlow', fontWeight: 700, fontSize: 14, color: '#fff' }}>MS</div>
+        <div style={{ flex: 1 }}>
+          <div style={{ fontSize: 13, fontWeight: 600, color: '#fff' }}>Maria Silva</div>
+          <div style={{ fontSize: 11, color: 'rgba(255,255,255,0.5)' }}>Plano Gratuito</div>
+        </div>
+        <Icon d={icons.settings} size={16} color="rgba(255,255,255,0.4)" />
+      </div>
+    </aside>
+  );
+}
+
+/* ── Top Bar ── */
+function TopBar({ title }) {
+  return (
+    <div style={{ height: 60, background: T.white, borderBottom: `1px solid ${T.gray200}`, display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '0 28px', flexShrink: 0 }}>
+      <div style={{ fontFamily: 'Barlow', fontWeight: 700, fontSize: 20, color: T.gray900 }}>{title}</div>
+      <div style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
+        <div style={{ position: 'relative', cursor: 'pointer' }}>
+          <Icon d={icons.bell} size={20} color={T.gray500} />
+          <div style={{ position: 'absolute', top: -3, right: -3, width: 8, height: 8, borderRadius: '50%', background: T.red500, border: `2px solid ${T.white}` }}></div>
+        </div>
+        <button style={{ display: 'flex', alignItems: 'center', gap: 8, background: T.teal600, color: '#fff', border: 'none', borderRadius: 8, padding: '8px 16px', fontFamily: 'Inter', fontWeight: 600, fontSize: 13, cursor: 'pointer' }}>
+          <Icon d={icons.plus} size={14} color="#fff" />
+          Nova transação
+        </button>
+      </div>
+    </div>
+  );
+}
+
+/* ── Stat Card ── */
+function StatCard({ label, value, change, changeUp, color }) {
+  return (
+    <div style={{ background: T.white, borderRadius: 12, padding: '18px 20px', boxShadow: '0 2px 8px rgba(28,98,120,0.08)', flex: 1, minWidth: 140 }}>
+      <div style={{ fontSize: 11, fontWeight: 600, letterSpacing: '0.08em', textTransform: 'uppercase', color: T.gray500, marginBottom: 8 }}>{label}</div>
+      <div style={{ fontFamily: 'JetBrains Mono', fontSize: 26, fontWeight: 500, color: color || T.gray900, lineHeight: 1 }}>{value}</div>
+      {change && (
+        <div style={{ fontSize: 12, fontWeight: 500, marginTop: 8, color: changeUp ? T.green700 : T.red700, display: 'flex', alignItems: 'center', gap: 3 }}>
+          {changeUp ? '↑' : '↓'} {change}
+        </div>
+      )}
+    </div>
+  );
+}
+
+/* ── Progress Bar ── */
+function ProgressBar({ pct, color = T.teal600 }) {
+  return (
+    <div style={{ height: 6, background: T.gray200, borderRadius: 9999, overflow: 'hidden' }}>
+      <div style={{ height: '100%', width: `${pct}%`, background: color, borderRadius: 9999 }}></div>
+    </div>
+  );
+}
+
+/* ── Badge ── */
+function Badge({ label, type = 'brand' }) {
+  const styles = {
+    brand:   { bg: T.teal50,   color: T.teal600 },
+    success: { bg: T.green100, color: T.green700 },
+    warning: { bg: T.amber100, color: T.amber700 },
+    danger:  { bg: T.red100,   color: T.red700 },
+    neutral: { bg: T.gray100,  color: T.gray600 },
+  };
+  const s = styles[type] || styles.brand;
+  return (
+    <span style={{ display: 'inline-flex', alignItems: 'center', gap: 4, background: s.bg, color: s.color, borderRadius: 9999, padding: '3px 9px', fontSize: 11, fontWeight: 600 }}>
+      <span style={{ width: 6, height: 6, borderRadius: '50%', background: s.color, flexShrink: 0 }}></span>
+      {label}
+    </span>
+  );
+}
+
+/* ── Dashboard Screen ── */
+function DashboardScreen() {
+  const debts = [
+    { name: 'Cartão Nubank', amount: 'R$ 4.280,00', due: '3 dias', pct: 28, type: 'danger', badge: 'Atrasado' },
+    { name: 'Financiamento Auto', amount: 'R$ 22.400,00', due: '18 dias', pct: 62, type: 'success', badge: 'Em dia' },
+    { name: 'Empréstimo CEF', amount: 'R$ 8.100,00', due: '12 dias', pct: 45, type: 'warning', badge: 'Atenção' },
+  ];
+  const transactions = [
+    { desc: 'Supermercado Extra', cat: 'Alimentação', date: '28 abr', value: '- R$ 234,50', neg: true },
+    { desc: 'Salário', cat: 'Receita', date: '25 abr', value: '+ R$ 4.800,00', neg: false },
+    { desc: 'Parcela Nubank', cat: 'Dívida', date: '22 abr', value: '- R$ 450,00', neg: true },
+    { desc: 'Uber', cat: 'Transporte', date: '21 abr', value: '- R$ 28,90', neg: true },
+    { desc: 'Freelance Design', cat: 'Receita', date: '18 abr', value: '+ R$ 900,00', neg: false },
+  ];
+
+  return (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 24 }}>
+      {/* Hero banner */}
+      <div style={{ background: `linear-gradient(135deg, ${T.teal800} 0%, ${T.teal600} 100%)`, borderRadius: 16, padding: '24px 28px', color: '#fff', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+        <div>
+          <div style={{ fontFamily: 'Inter', fontSize: 13, color: 'rgba(255,255,255,0.65)', marginBottom: 4 }}>Bom dia, Maria 👋</div>
+          <div style={{ fontFamily: 'Barlow', fontWeight: 800, fontSize: 26, marginBottom: 6 }}>Saldo disponível</div>
+          <div style={{ fontFamily: 'JetBrains Mono', fontSize: 40, fontWeight: 500, letterSpacing: '-0.02em' }}>R$ 3.240,00</div>
+        </div>
+        <div style={{ textAlign: 'right' }}>
+          <div style={{ fontSize: 12, color: 'rgba(255,255,255,0.6)', marginBottom: 4 }}>Meta de quitação</div>
+          <div style={{ fontFamily: 'JetBrains Mono', fontSize: 22, fontWeight: 500 }}>62%</div>
+          <div style={{ marginTop: 8, width: 120, height: 6, background: 'rgba(255,255,255,0.2)', borderRadius: 9999, overflow: 'hidden' }}>
+            <div style={{ width: '62%', height: '100%', background: T.teal300, borderRadius: 9999 }}></div>
+          </div>
+          <div style={{ fontSize: 11, color: 'rgba(255,255,255,0.5)', marginTop: 4 }}>R$ 34.780 de R$ 56.000</div>
+        </div>
+      </div>
+
+      {/* Stats row */}
+      <div style={{ display: 'flex', gap: 14 }}>
+        <StatCard label="Total dívidas" value="R$ 34.780" change="R$ 800 quitado" changeUp={true} color={T.teal600} />
+        <StatCard label="Gasto este mês" value="R$ 2.840" change="14% do orçamento" changeUp={false} color={T.amber700} />
+        <StatCard label="Economizado" value="R$ 1.120" change="meta 56%" changeUp={true} color={T.green700} />
+        <StatCard label="Parcelas em atraso" value="2" color={T.red700} />
+      </div>
+
+      {/* Two columns */}
+      <div style={{ display: 'flex', gap: 16 }}>
+        {/* Debts */}
+        <div style={{ flex: 3, background: T.white, borderRadius: 12, boxShadow: '0 2px 8px rgba(28,98,120,0.08)', padding: '20px 24px' }}>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 18 }}>
+            <div style={{ fontFamily: 'Barlow', fontWeight: 700, fontSize: 16, color: T.gray900 }}>Dívidas ativas</div>
+            <span style={{ fontSize: 12, color: T.teal600, fontWeight: 600, cursor: 'pointer' }}>Ver todas →</span>
+          </div>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
+            {debts.map((d, i) => (
+              <div key={i} style={{ padding: '14px 16px', background: T.gray100, borderRadius: 10, display: 'flex', alignItems: 'center', gap: 14 }}>
+                <div style={{ flex: 1 }}>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 6 }}>
+                    <span style={{ fontFamily: 'Barlow', fontWeight: 700, fontSize: 14, color: T.gray900 }}>{d.name}</span>
+                    <Badge label={d.badge} type={d.type} />
+                  </div>
+                  <div style={{ fontFamily: 'JetBrains Mono', fontSize: 18, fontWeight: 500, color: T.gray900, marginBottom: 8 }}>{d.amount}</div>
+                  <ProgressBar pct={d.pct} color={d.type === 'danger' ? T.red500 : d.type === 'success' ? T.green500 : T.amber500} />
+                  <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: 4, fontSize: 11, color: T.gray500 }}>
+                    <span>{d.pct}% quitado</span>
+                    <span>Vence em {d.due}</span>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Transactions */}
+        <div style={{ flex: 2, background: T.white, borderRadius: 12, boxShadow: '0 2px 8px rgba(28,98,120,0.08)', padding: '20px 24px' }}>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 18 }}>
+            <div style={{ fontFamily: 'Barlow', fontWeight: 700, fontSize: 16, color: T.gray900 }}>Últimas transações</div>
+            <span style={{ fontSize: 12, color: T.teal600, fontWeight: 600, cursor: 'pointer' }}>Ver todas →</span>
+          </div>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
+            {transactions.map((t, i) => (
+              <div key={i} style={{ display: 'flex', alignItems: 'center', gap: 12, padding: '10px 0', borderBottom: i < transactions.length - 1 ? `1px solid ${T.gray100}` : 'none' }}>
+                <div style={{ width: 36, height: 36, borderRadius: 10, background: t.neg ? T.red50 : T.green50, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+                  <Icon d={t.neg ? icons.credit : icons.trending} size={16} color={t.neg ? T.red500 : T.green500} />
+                </div>
+                <div style={{ flex: 1 }}>
+                  <div style={{ fontSize: 13, fontWeight: 600, color: T.gray900 }}>{t.desc}</div>
+                  <div style={{ fontSize: 11, color: T.gray500 }}>{t.cat} · {t.date}</div>
+                </div>
+                <div style={{ fontFamily: 'JetBrains Mono', fontSize: 13, fontWeight: 500, color: t.neg ? T.red700 : T.green700 }}>{t.value}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+/* ── Debts Screen ── */
+function DebtsScreen() {
+  const [filter, setFilter] = useState('all');
+  const debts = [
+    { name: 'Cartão Nubank', bank: 'Nubank', amount: 4280, due: '01/05', rate: '23,9%', pct: 28, type: 'danger', badge: 'Atrasado', installments: null },
+    { name: 'Financiamento Auto', bank: 'Itaú', amount: 22400, due: '18/05', rate: '1,2%', pct: 62, type: 'success', badge: 'Em dia', installments: '48x' },
+    { name: 'Empréstimo pessoal', bank: 'CEF', amount: 8100, due: '10/05', rate: '3,5%', pct: 45, type: 'warning', badge: 'Atenção', installments: '24x' },
+    { name: 'Cartão Visa C6', bank: 'C6 Bank', amount: 1240, due: '15/05', rate: '19,9%', pct: 80, type: 'success', badge: 'Em dia', installments: null },
+  ];
+  const filters = [{ id: 'all', label: 'Todas' }, { id: 'danger', label: 'Atrasadas' }, { id: 'warning', label: 'Atenção' }, { id: 'success', label: 'Em dia' }];
+  const filtered = filter === 'all' ? debts : debts.filter(d => d.type === filter);
+
+  return (
+    <div>
+      {/* Summary */}
+      <div style={{ display: 'flex', gap: 14, marginBottom: 24 }}>
+        <StatCard label="Total em dívidas" value="R$ 36.020" color={T.teal600} />
+        <StatCard label="Parcelas vencendo" value="2 dívidas" change="próximos 7 dias" changeUp={false} color={T.amber700} />
+        <StatCard label="Juros acumulados" value="R$ 890/mês" color={T.red700} />
+      </div>
+      {/* Filters + Table */}
+      <div style={{ background: T.white, borderRadius: 12, boxShadow: '0 2px 8px rgba(28,98,120,0.08)', overflow: 'hidden' }}>
+        <div style={{ padding: '16px 24px', borderBottom: `1px solid ${T.gray200}`, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+          <div style={{ display: 'flex', gap: 8 }}>
+            {filters.map(f => (
+              <button key={f.id} onClick={() => setFilter(f.id)} style={{
+                padding: '6px 14px', borderRadius: 8, border: `1.5px solid ${filter === f.id ? T.teal600 : T.gray200}`,
+                background: filter === f.id ? T.teal50 : T.white,
+                color: filter === f.id ? T.teal600 : T.gray600,
+                fontFamily: 'Inter', fontSize: 13, fontWeight: 600, cursor: 'pointer',
+              }}>{f.label}</button>
+            ))}
+          </div>
+          <button style={{ display: 'flex', alignItems: 'center', gap: 8, background: T.teal600, color: '#fff', border: 'none', borderRadius: 8, padding: '8px 16px', fontFamily: 'Inter', fontWeight: 600, fontSize: 13, cursor: 'pointer' }}>
+            <Icon d={icons.plus} size={14} color="#fff" /> Adicionar dívida
+          </button>
+        </div>
+        <table style={{ width: '100%', borderCollapse: 'collapse' }}>
+          <thead>
+            <tr style={{ background: T.gray100 }}>
+              {['Dívida', 'Instituição', 'Valor', 'Vencimento', 'Taxa', 'Progresso', 'Status', ''].map((h, i) => (
+                <th key={i} style={{ padding: '10px 16px', textAlign: 'left', fontSize: 11, fontWeight: 600, letterSpacing: '0.06em', textTransform: 'uppercase', color: T.gray500 }}>{h}</th>
+              ))}
+            </tr>
+          </thead>
+          <tbody>
+            {filtered.map((d, i) => (
+              <tr key={i} style={{ borderBottom: `1px solid ${T.gray100}` }}>
+                <td style={{ padding: '14px 16px', fontFamily: 'Barlow', fontWeight: 700, fontSize: 14, color: T.gray900 }}>{d.name}</td>
+                <td style={{ padding: '14px 16px', fontSize: 13, color: T.gray600 }}>{d.bank}</td>
+                <td style={{ padding: '14px 16px', fontFamily: 'JetBrains Mono', fontSize: 14, fontWeight: 500, color: T.gray900 }}>R$ {d.amount.toLocaleString('pt-BR')},00</td>
+                <td style={{ padding: '14px 16px', fontSize: 13, color: T.gray600 }}>{d.due}</td>
+                <td style={{ padding: '14px 16px', fontFamily: 'JetBrains Mono', fontSize: 13, color: T.gray700 }}>{d.rate} a.m.</td>
+                <td style={{ padding: '14px 16px', minWidth: 120 }}>
+                  <ProgressBar pct={d.pct} color={d.type === 'danger' ? T.red500 : d.type === 'success' ? T.green500 : T.amber500} />
+                  <div style={{ fontSize: 11, color: T.gray500, marginTop: 3 }}>{d.pct}%</div>
+                </td>
+                <td style={{ padding: '14px 16px' }}><Badge label={d.badge} type={d.type} /></td>
+                <td style={{ padding: '14px 16px' }}>
+                  <button style={{ background: T.teal50, color: T.teal600, border: 'none', borderRadius: 6, padding: '6px 12px', fontSize: 12, fontWeight: 600, cursor: 'pointer', fontFamily: 'Inter' }}>Detalhes</button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  );
+}
+
+/* ── Goals Screen ── */
+function GoalsScreen() {
+  const goals = [
+    { name: 'Reserva de emergência', target: 8000, current: 2000, deadline: 'Dez 2025', icon: '🎯', color: T.teal600 },
+    { name: 'Quitar Nubank', target: 15000, current: 9300, deadline: 'Mar 2025', icon: '💳', color: T.red500 },
+    { name: 'Viagem Europa', target: 12000, current: 1200, deadline: 'Jun 2026', icon: '✈️', color: T.amber500 },
+    { name: 'Fundo de investimento', target: 5000, current: 4400, deadline: 'Ago 2025', icon: '📈', color: T.green500 },
+  ];
+  return (
+    <div>
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 20 }}>
+        <div style={{ fontFamily: 'Barlow', fontWeight: 700, fontSize: 18, color: T.gray800 }}>Suas metas financeiras</div>
+        <button style={{ display: 'flex', alignItems: 'center', gap: 8, background: T.teal600, color: '#fff', border: 'none', borderRadius: 8, padding: '9px 18px', fontFamily: 'Inter', fontWeight: 600, fontSize: 13, cursor: 'pointer' }}>
+          <Icon d={icons.plus} size={14} color="#fff" /> Nova meta
+        </button>
+      </div>
+      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16 }}>
+        {goals.map((g, i) => {
+          const pct = Math.round((g.current / g.target) * 100);
+          return (
+            <div key={i} style={{ background: T.white, borderRadius: 14, boxShadow: '0 2px 8px rgba(28,98,120,0.08)', padding: '22px 24px' }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 14 }}>
+                <div>
+                  <div style={{ fontFamily: 'Barlow', fontWeight: 700, fontSize: 16, color: T.gray900, marginBottom: 4 }}>{g.name}</div>
+                  <div style={{ fontSize: 12, color: T.gray500 }}>Meta: {g.deadline}</div>
+                </div>
+                <div style={{ width: 44, height: 44, borderRadius: 12, background: T.teal25, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 22 }}>{g.icon}</div>
+              </div>
+              <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 8 }}>
+                <span style={{ fontFamily: 'JetBrains Mono', fontSize: 20, fontWeight: 500, color: T.gray900 }}>R$ {g.current.toLocaleString('pt-BR')}</span>
+                <span style={{ fontSize: 13, color: T.gray500, alignSelf: 'flex-end' }}>de R$ {g.target.toLocaleString('pt-BR')}</span>
+              </div>
+              <ProgressBar pct={pct} color={g.color} />
+              <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: 6, fontSize: 12 }}>
+                <span style={{ fontWeight: 600, color: g.color }}>{pct}% concluído</span>
+                <span style={{ color: T.gray500 }}>Faltam R$ {(g.target - g.current).toLocaleString('pt-BR')}</span>
+              </div>
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  );
+}
+
+/* ── Budget Screen ── */
+function BudgetScreen() {
+  const cats = [
+    { name: 'Habitação', budget: 1500, spent: 1500, icon: '🏠', color: T.teal600 },
+    { name: 'Alimentação', budget: 800, spent: 694, icon: '🛒', color: T.green500 },
+    { name: 'Transporte', budget: 400, spent: 347, icon: '🚗', color: T.teal400 },
+    { name: 'Saúde', budget: 300, spent: 120, icon: '💊', color: T.amber500 },
+    { name: 'Lazer', budget: 200, spent: 189, icon: '🎭', color: T.red500 },
+    { name: 'Educação', budget: 250, spent: 250, icon: '📚', color: T.teal700 },
+  ];
+  const totalBudget = cats.reduce((s, c) => s + c.budget, 0);
+  const totalSpent = cats.reduce((s, c) => s + c.spent, 0);
+
+  return (
+    <div>
+      <div style={{ background: T.white, borderRadius: 12, boxShadow: '0 2px 8px rgba(28,98,120,0.08)', padding: '24px', marginBottom: 20 }}>
+        <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 16 }}>
+          <div>
+            <div style={{ fontSize: 11, fontWeight: 600, letterSpacing: '0.08em', textTransform: 'uppercase', color: T.gray500, marginBottom: 4 }}>Orçamento total — Abril 2025</div>
+            <div style={{ fontFamily: 'JetBrains Mono', fontSize: 32, fontWeight: 500, color: T.gray900 }}>R$ {totalSpent.toLocaleString('pt-BR')} <span style={{ fontSize: 16, color: T.gray400, fontWeight: 400 }}>/ R$ {totalBudget.toLocaleString('pt-BR')}</span></div>
+          </div>
+          <div style={{ textAlign: 'right' }}>
+            <div style={{ fontFamily: 'JetBrains Mono', fontSize: 28, fontWeight: 500, color: T.teal600 }}>{Math.round(totalSpent/totalBudget*100)}%</div>
+            <div style={{ fontSize: 12, color: T.gray500 }}>utilizado</div>
+          </div>
+        </div>
+        <ProgressBar pct={Math.round(totalSpent/totalBudget*100)} color={T.teal600} />
+      </div>
+      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 14 }}>
+        {cats.map((c, i) => {
+          const pct = Math.round(c.spent/c.budget*100);
+          const over = pct >= 100;
+          return (
+            <div key={i} style={{ background: T.white, borderRadius: 12, boxShadow: '0 2px 8px rgba(28,98,120,0.08)', padding: '16px 18px' }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 10 }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+                  <span style={{ fontSize: 20 }}>{c.icon}</span>
+                  <span style={{ fontFamily: 'Barlow', fontWeight: 700, fontSize: 14, color: T.gray900 }}>{c.name}</span>
+                </div>
+                {over && <Badge label="Limite" type="danger" />}
+              </div>
+              <div style={{ fontFamily: 'JetBrains Mono', fontSize: 16, fontWeight: 500, color: T.gray900, marginBottom: 8 }}>
+                R$ {c.spent} <span style={{ fontSize: 12, color: T.gray400, fontWeight: 400 }}>/ {c.budget}</span>
+              </div>
+              <ProgressBar pct={Math.min(pct, 100)} color={over ? T.red500 : pct > 80 ? T.amber500 : c.color} />
+              <div style={{ fontSize: 11, color: T.gray500, marginTop: 4 }}>{pct}% do orçamento</div>
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  );
+}
+
+/* ── App Shell ── */
+function App() {
+  const [active, setActive] = useState('dashboard');
+  const screens = {
+    dashboard: { title: 'Visão geral', component: <DashboardScreen /> },
+    debts:     { title: 'Dívidas', component: <DebtsScreen /> },
+    budget:    { title: 'Orçamento', component: <BudgetScreen /> },
+    goals:     { title: 'Metas', component: <GoalsScreen /> },
+    reports:   { title: 'Relatórios', component: <div style={{ padding: 40, textAlign: 'center', color: T.gray400, fontFamily: 'Barlow', fontSize: 18 }}>Relatórios em construção…</div> },
+  };
+  const screen = screens[active] || screens.dashboard;
+
+  return (
+    <div style={{ display: 'flex', minHeight: '100vh' }}>
+      <Sidebar active={active} setActive={setActive} />
+      <div style={{ flex: 1, display: 'flex', flexDirection: 'column', minWidth: 0 }}>
+        <TopBar title={screen.title} />
+        <main style={{ flex: 1, padding: '28px', overflowY: 'auto', background: T.teal25 }}>
+          {screen.component}
+        </main>
+      </div>
+    </div>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+</script>
+</body>
+</html>

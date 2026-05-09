@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  body { margin: 0; background: var(--color-bg); font-family: var(--font-body); padding: 20px 24px; }
+  .section-title { font-size: 11px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--color-gray-400); margin-bottom: 10px; }
+  .group { margin-bottom: 18px; }
+  .row { display: flex; gap: 12px; flex-wrap: wrap; align-items: flex-start; }
+
+  .field { display: flex; flex-direction: column; gap: 5px; min-width: 180px; }
+  .field label { font-size: 12px; font-weight: 600; color: #374151; letter-spacing: 0.01em; }
+  .field .hint { font-size: 11px; color: #6B7280; }
+  .field .error-text { font-size: 11px; color: #B91C1C; }
+
+  input, select, textarea {
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    color: #111827;
+    border: 1.5px solid #D1D5DB;
+    border-radius: 8px;
+    padding: 9px 12px;
+    background: #fff;
+    outline: none;
+    transition: border-color 150ms, box-shadow 150ms;
+    width: 100%;
+    box-sizing: border-box;
+  }
+  input::placeholder, textarea::placeholder { color: #9CA3AF; }
+  input:focus, select:focus { border-color: #1C6278; box-shadow: 0 0 0 3px rgba(28,98,120,0.15); }
+
+  .input-icon-wrap { position: relative; }
+  .input-icon-wrap svg { position: absolute; left: 10px; top: 50%; transform: translateY(-50%); color: #9CA3AF; }
+  .input-icon-wrap input { padding-left: 34px; }
+
+  .input-prefix { display: flex; }
+  .input-prefix span { background: #F3F4F6; border: 1.5px solid #D1D5DB; border-right: none; border-radius: 8px 0 0 8px; padding: 9px 12px; font-size: 14px; color: #6B7280; font-weight: 500; white-space: nowrap; }
+  .input-prefix input { border-radius: 0 8px 8px 0; }
+
+  .input-error { border-color: #EF4444 !important; }
+  .input-success { border-color: #10B981 !important; }
+  .input-disabled { background: #F3F4F6 !important; color: #9CA3AF; cursor: not-allowed; }
+</style>
+</head>
+<body>
+
+<div class="group">
+  <div class="section-title">Text Inputs</div>
+  <div class="row">
+    <div class="field">
+      <label>Nome completo</label>
+      <input type="text" placeholder="Ex: Maria Silva" />
+    </div>
+    <div class="field">
+      <label>E-mail</label>
+      <div class="input-icon-wrap">
+        <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        <input type="email" placeholder="voce@email.com" />
+      </div>
+    </div>
+    <div class="field">
+      <label>Valor da dívida</label>
+      <div class="input-prefix">
+        <span>R$</span>
+        <input type="text" placeholder="0,00" style="font-family:'JetBrains Mono',monospace;" />
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="group">
+  <div class="section-title">States</div>
+  <div class="row">
+    <div class="field">
+      <label>Foco ativo</label>
+      <input type="text" value="Cartão Visa" style="border-color:#1C6278;box-shadow:0 0 0 3px rgba(28,98,120,0.15);" />
+    </div>
+    <div class="field">
+      <label>Erro <span style="color:#B91C1C">*</span></label>
+      <input type="text" value="12345" class="input-error" />
+      <div class="error-text">CPF inválido. Verifique e tente novamente.</div>
+    </div>
+    <div class="field">
+      <label>Sucesso</label>
+      <input type="text" value="Confirmado" class="input-success" style="color:#047857" />
+      <div class="hint" style="color:#047857">✓ Dados verificados</div>
+    </div>
+    <div class="field">
+      <label>Desabilitado</label>
+      <input type="text" value="Bloqueado" class="input-disabled" disabled />
+    </div>
+  </div>
+</div>
+
+<div class="group">
+  <div class="section-title">Select & Textarea</div>
+  <div class="row">
+    <div class="field">
+      <label>Categoria</label>
+      <select>
+        <option>Habitação</option>
+        <option>Alimentação</option>
+        <option>Transporte</option>
+        <option>Saúde</option>
+      </select>
+    </div>
+    <div class="field" style="min-width:240px">
+      <label>Observação</label>
+      <textarea rows="3" placeholder="Adicione detalhes sobre esta dívida..."></textarea>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

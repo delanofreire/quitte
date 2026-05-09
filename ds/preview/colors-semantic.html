@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  body { margin: 0; background: var(--color-bg); font-family: var(--font-body); padding: 20px; }
+  .groups { display: flex; gap: 12px; }
+  .group { flex: 1; }
+  .group-label { font-family: var(--font-heading); font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--color-gray-500); margin-bottom: 8px; }
+  .row { display: flex; border-radius: var(--radius-md); overflow: hidden; box-shadow: var(--shadow-xs); }
+  .swatch { flex: 1; height: 56px; display: flex; flex-direction: column; justify-content: flex-end; padding: 6px; }
+  .swatch span { font-size: 9px; font-weight: 600; }
+  .sample { margin-top: 8px; padding: 8px 12px; border-radius: var(--radius-md); font-size: 12px; font-weight: 500; display: flex; align-items: center; gap: 6px; }
+</style>
+</head>
+<body>
+<div class="groups">
+  <div class="group">
+    <div class="group-label">Success</div>
+    <div class="row">
+      <div class="swatch" style="background:#064E3B"><span style="color:#6EE7B7">900</span></div>
+      <div class="swatch" style="background:#047857"><span style="color:#D1FAE5">700</span></div>
+      <div class="swatch" style="background:#10B981"><span style="color:#fff">500</span></div>
+      <div class="swatch" style="background:#6EE7B7"><span style="color:#047857">300</span></div>
+      <div class="swatch" style="background:#D1FAE5"><span style="color:#047857">100</span></div>
+    </div>
+    <div class="sample" style="background:#ECFDF5; color:#047857; border: 1px solid #6EE7B7;">
+      <svg width="14" height="14" fill="none" stroke="#10B981" stroke-width="2" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+      Meta atingida
+    </div>
+  </div>
+  <div class="group">
+    <div class="group-label">Warning</div>
+    <div class="row">
+      <div class="swatch" style="background:#78350F"><span style="color:#FCD34D">900</span></div>
+      <div class="swatch" style="background:#B45309"><span style="color:#FEF3C7">700</span></div>
+      <div class="swatch" style="background:#F59E0B"><span style="color:#fff">500</span></div>
+      <div class="swatch" style="background:#FCD34D"><span style="color:#B45309">300</span></div>
+      <div class="swatch" style="background:#FEF3C7"><span style="color:#B45309">100</span></div>
+    </div>
+    <div class="sample" style="background:#FFFBEB; color:#B45309; border: 1px solid #FCD34D;">
+      <svg width="14" height="14" fill="none" stroke="#F59E0B" stroke-width="2" viewBox="0 0 24 24"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+      Limite próximo
+    </div>
+  </div>
+  <div class="group">
+    <div class="group-label">Danger</div>
+    <div class="row">
+      <div class="swatch" style="background:#7F1D1D"><span style="color:#FCA5A5">900</span></div>
+      <div class="swatch" style="background:#B91C1C"><span style="color:#FEE2E2">700</span></div>
+      <div class="swatch" style="background:#EF4444"><span style="color:#fff">500</span></div>
+      <div class="swatch" style="background:#FCA5A5"><span style="color:#B91C1C">300</span></div>
+      <div class="swatch" style="background:#FEE2E2"><span style="color:#B91C1C">100</span></div>
+    </div>
+    <div class="sample" style="background:#FEF2F2; color:#B91C1C; border: 1px solid #FCA5A5;">
+      <svg width="14" height="14" fill="none" stroke="#EF4444" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+      Dívida em atraso
+    </div>
+  </div>
+</div>
+</body>
+</html>

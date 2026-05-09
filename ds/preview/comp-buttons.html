@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  body { margin: 0; background: var(--color-bg); font-family: var(--font-body); padding: 20px 24px; }
+  .section-title { font-size: 11px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--color-gray-400); margin-bottom: 12px; }
+  .group { margin-bottom: 20px; }
+  .row { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
+
+  /* Base button */
+  .btn { display: inline-flex; align-items: center; gap: 8px; font-family: var(--font-body); font-weight: 600; border: none; cursor: pointer; transition: all 150ms cubic-bezier(0.4,0,0.2,1); white-space: nowrap; }
+
+  /* Sizes */
+  .btn-sm  { font-size: 13px; padding: 7px 14px; border-radius: 6px; }
+  .btn-md  { font-size: 14px; padding: 10px 20px; border-radius: 8px; }
+  .btn-lg  { font-size: 15px; padding: 13px 26px; border-radius: 10px; }
+
+  /* Variants */
+  .btn-primary { background: #1C6278; color: #fff; }
+  .btn-primary:hover { background: #1A607A; }
+
+  .btn-secondary { background: #E8F5F8; color: #1C6278; }
+  .btn-secondary:hover { background: #D2EEF4; }
+
+  .btn-outline { background: transparent; color: #1C6278; border: 1.5px solid #1C6278; }
+  .btn-outline:hover { background: #E8F5F8; }
+
+  .btn-ghost { background: transparent; color: #4B5563; border: none; }
+  .btn-ghost:hover { background: #F3F4F6; }
+
+  .btn-danger { background: #EF4444; color: #fff; }
+  .btn-danger:hover { background: #B91C1C; }
+
+  .btn-success { background: #10B981; color: #fff; }
+
+  /* States */
+  .btn-disabled { background: #E5E7EB; color: #9CA3AF; cursor: not-allowed; }
+  .btn-loading { background: #1C6278; color: transparent; position: relative; cursor: wait; }
+  .btn-loading::after { content: ''; position: absolute; width: 14px; height: 14px; border: 2px solid rgba(255,255,255,0.3); border-top-color: #fff; border-radius: 50%; animation: spin 0.6s linear infinite; }
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  .divider { width: 1px; height: 28px; background: var(--color-gray-200); }
+</style>
+</head>
+<body>
+
+<div class="group">
+  <div class="section-title">Variants</div>
+  <div class="row">
+    <button class="btn btn-md btn-primary">Primário</button>
+    <button class="btn btn-md btn-secondary">Secundário</button>
+    <button class="btn btn-md btn-outline">Contornado</button>
+    <button class="btn btn-md btn-ghost">Ghost</button>
+    <div class="divider"></div>
+    <button class="btn btn-md btn-success">Confirmar</button>
+    <button class="btn btn-md btn-danger">Excluir</button>
+  </div>
+</div>
+
+<div class="group">
+  <div class="section-title">Sizes</div>
+  <div class="row">
+    <button class="btn btn-sm btn-primary">Small</button>
+    <button class="btn btn-md btn-primary">Medium</button>
+    <button class="btn btn-lg btn-primary">Large</button>
+  </div>
+</div>
+
+<div class="group">
+  <div class="section-title">States</div>
+  <div class="row">
+    <button class="btn btn-md btn-primary">Default</button>
+    <button class="btn btn-md btn-primary" style="background:#134F65;box-shadow:0 0 0 3px rgba(28,98,120,0.2)">Focused</button>
+    <button class="btn btn-md btn-primary" style="transform:scale(0.98);background:#134F65">Pressed</button>
+    <button class="btn btn-md btn-disabled">Desabilitado</button>
+    <button class="btn btn-md btn-loading btn-primary" style="min-width:120px;justify-content:center">Carregando</button>
+  </div>
+</div>
+
+<div class="group">
+  <div class="section-title">With Icons</div>
+  <div class="row">
+    <button class="btn btn-md btn-primary">
+      <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+      Adicionar meta
+    </button>
+    <button class="btn btn-md btn-outline">
+      <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+      Exportar
+    </button>
+    <button class="btn btn-md btn-ghost">
+      <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      Buscar
+    </button>
+    <button class="btn btn-md btn-primary" style="border-radius:9999px;padding:10px 22px">
+      Pagar agora
+      <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
+    </button>
+  </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  body { margin: 0; background: var(--color-bg); font-family: var(--font-body); padding: 20px 24px; }
+  .section-title { font-size: 11px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--color-gray-400); margin-bottom: 12px; }
+  .group { margin-bottom: 20px; }
+  .row { display: flex; gap: 16px; flex-wrap: wrap; align-items: flex-start; }
+  .card { background: #fff; border-radius: 12px; box-shadow: 0 2px 8px rgba(28,98,120,0.08); padding: 18px 20px; }
+
+  /* Donut chart */
+  .donut-wrap { display: flex; gap: 20px; align-items: center; }
+  .legend { display: flex; flex-direction: column; gap: 8px; }
+  .legend-item { display: flex; align-items: center; gap: 8px; font-size: 12px; color: #374151; }
+  .legend-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+  .legend-val { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: #6B7280; margin-left: auto; padding-left: 12px; }
+
+  /* Bar chart */
+  .bar-chart { display: flex; align-items: flex-end; gap: 10px; height: 80px; }
+  .bar-col { display: flex; flex-direction: column; align-items: center; gap: 4px; }
+  .bar { border-radius: 4px 4px 0 0; width: 28px; }
+  .bar-label { font-size: 10px; color: #9CA3AF; }
+
+  /* Progress list */
+  .prog-list { display: flex; flex-direction: column; gap: 10px; min-width: 220px; }
+  .prog-item { display: flex; flex-direction: column; gap: 4px; }
+  .prog-header { display: flex; justify-content: space-between; font-size: 12px; }
+  .prog-name { font-weight: 500; color: #374151; }
+  .prog-pct { font-family: 'JetBrains Mono', monospace; color: #6B7280; }
+  .prog-bar { height: 6px; background: #E5E7EB; border-radius: 9999px; overflow: hidden; }
+  .prog-fill { height: 100%; border-radius: 9999px; }
+</style>
+</head>
+<body>
+
+<div class="group">
+  <div class="section-title">Data Display</div>
+  <div class="row">
+
+    <!-- Donut -->
+    <div class="card">
+      <div style="font-family:'Barlow',sans-serif;font-weight:700;font-size:13px;color:#374151;margin-bottom:14px">Distribuição do orçamento</div>
+      <div class="donut-wrap">
+        <svg width="90" height="90" viewBox="0 0 90 90">
+          <circle cx="45" cy="45" r="34" fill="none" stroke="#E5E7EB" stroke-width="14"/>
+          <!-- Habitação 35% -->
+          <circle cx="45" cy="45" r="34" fill="none" stroke="#1C6278" stroke-width="14"
+            stroke-dasharray="74.6 139" stroke-dashoffset="0" transform="rotate(-90 45 45)"/>
+          <!-- Alimentação 25% -->
+          <circle cx="45" cy="45" r="34" fill="none" stroke="#2D8BAD" stroke-width="14"
+            stroke-dasharray="53.4 160" stroke-dashoffset="-74.6" transform="rotate(-90 45 45)"/>
+          <!-- Transporte 20% -->
+          <circle cx="45" cy="45" r="34" fill="none" stroke="#7DC0D6" stroke-width="14"
+            stroke-dasharray="42.7 171" stroke-dashoffset="-128" transform="rotate(-90 45 45)"/>
+          <!-- Outros 20% -->
+          <circle cx="45" cy="45" r="34" fill="none" stroke="#AEDCE8" stroke-width="14"
+            stroke-dasharray="42.7 171" stroke-dashoffset="-170.7" transform="rotate(-90 45 45)"/>
+          <text x="45" y="48" text-anchor="middle" font-family="JetBrains Mono" font-size="13" fill="#111827" font-weight="500">100%</text>
+        </svg>
+        <div class="legend">
+          <div class="legend-item"><div class="legend-dot" style="background:#1C6278"></div>Habitação<span class="legend-val">35%</span></div>
+          <div class="legend-item"><div class="legend-dot" style="background:#2D8BAD"></div>Alimentação<span class="legend-val">25%</span></div>
+          <div class="legend-item"><div class="legend-dot" style="background:#7DC0D6"></div>Transporte<span class="legend-val">20%</span></div>
+          <div class="legend-item"><div class="legend-dot" style="background:#AEDCE8"></div>Outros<span class="legend-val">20%</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bar chart -->
+    <div class="card">
+      <div style="font-family:'Barlow',sans-serif;font-weight:700;font-size:13px;color:#374151;margin-bottom:14px">Pagamentos — últimos 6 meses</div>
+      <div class="bar-chart">
+        <div class="bar-col"><div class="bar" style="height:40px;background:#AEDCE8"></div><div class="bar-label">Nov</div></div>
+        <div class="bar-col"><div class="bar" style="height:55px;background:#7DC0D6"></div><div class="bar-label">Dez</div></div>
+        <div class="bar-col"><div class="bar" style="height:48px;background:#4AA5C4"></div><div class="bar-label">Jan</div></div>
+        <div class="bar-col"><div class="bar" style="height:65px;background:#2D8BAD"></div><div class="bar-label">Fev</div></div>
+        <div class="bar-col"><div class="bar" style="height:58px;background:#237494"></div><div class="bar-label">Mar</div></div>
+        <div class="bar-col"><div class="bar" style="height:78px;background:#1C6278"></div><div class="bar-label">Abr</div></div>
+      </div>
+    </div>
+
+    <!-- Progress list -->
+    <div class="card">
+      <div style="font-family:'Barlow',sans-serif;font-weight:700;font-size:13px;color:#374151;margin-bottom:14px">Progresso das metas</div>
+      <div class="prog-list">
+        <div class="prog-item">
+          <div class="prog-header"><span class="prog-name">Reserva emergência</span><span class="prog-pct">25%</span></div>
+          <div class="prog-bar"><div class="prog-fill" style="width:25%;background:#1C6278"></div></div>
+        </div>
+        <div class="prog-item">
+          <div class="prog-header"><span class="prog-name">Quitar Nubank</span><span class="prog-pct">62%</span></div>
+          <div class="prog-bar"><div class="prog-fill" style="width:62%;background:#10B981"></div></div>
+        </div>
+        <div class="prog-item">
+          <div class="prog-header"><span class="prog-name">Viagem Europa</span><span class="prog-pct">10%</span></div>
+          <div class="prog-bar"><div class="prog-fill" style="width:10%;background:#F59E0B"></div></div>
+        </div>
+        <div class="prog-item">
+          <div class="prog-header"><span class="prog-name">Financiamento</span><span class="prog-pct">88%</span></div>
+          <div class="prog-bar"><div class="prog-fill" style="width:88%;background:#2D8BAD"></div></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+</body>
+</html>

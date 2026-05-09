@@ -1,0 +1,271 @@
+/* =============================================
+   QUITTE DESIGN SYSTEM — Colors & Typography
+   ============================================= */
+
+@import url('https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700;800;900&family=Barlow+Condensed:wght@600;700;800&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+
+:root {
+  /* ── PRIMARY: Teal ── */
+  --color-teal-950: #061E28;
+  --color-teal-900: #0D3D4F;
+  --color-teal-800: #134F65;
+  --color-teal-700: #1A607A;
+  --color-teal-600: #1C6278; /* ← Brand Primary */
+  --color-teal-500: #237494;
+  --color-teal-400: #2D8BAD;
+  --color-teal-300: #4AA5C4;
+  --color-teal-200: #7DC0D6;
+  --color-teal-100: #AEDCE8;
+  --color-teal-75:  #D2EEF4;
+  --color-teal-50:  #E8F5F8;
+  --color-teal-25:  #EEF3F6;
+
+  /* ── NEUTRALS: Cool Gray ── */
+  --color-gray-950: #0A0F14;
+  --color-gray-900: #111827;
+  --color-gray-800: #1F2937;
+  --color-gray-700: #374151;
+  --color-gray-600: #4B5563;
+  --color-gray-500: #6B7280;
+  --color-gray-400: #9CA3AF;
+  --color-gray-300: #D1D5DB;
+  --color-gray-200: #E5E7EB;
+  --color-gray-100: #F3F4F6;
+  --color-gray-50:  #F9FAFB;
+  --color-white:    #FFFFFF;
+
+  /* ── SUCCESS: Green ── */
+  --color-green-900: #064E3B;
+  --color-green-700: #047857;
+  --color-green-500: #10B981;
+  --color-green-300: #6EE7B7;
+  --color-green-100: #D1FAE5;
+  --color-green-50:  #ECFDF5;
+
+  /* ── WARNING: Amber ── */
+  --color-amber-900: #78350F;
+  --color-amber-700: #B45309;
+  --color-amber-500: #F59E0B;
+  --color-amber-300: #FCD34D;
+  --color-amber-100: #FEF3C7;
+  --color-amber-50:  #FFFBEB;
+
+  /* ── DANGER: Red ── */
+  --color-red-900: #7F1D1D;
+  --color-red-700: #B91C1C;
+  --color-red-500: #EF4444;
+  --color-red-300: #FCA5A5;
+  --color-red-100: #FEE2E2;
+  --color-red-50:  #FEF2F2;
+
+  /* ── INFO: Teal alias ── */
+  --color-info-500: var(--color-teal-400);
+  --color-info-100: var(--color-teal-50);
+
+  /* ──────────────────────────────────────────
+     SEMANTIC TOKENS
+  ────────────────────────────────────────── */
+
+  /* Brand */
+  --color-brand:           var(--color-teal-600);
+  --color-brand-hover:     var(--color-teal-700);
+  --color-brand-active:    var(--color-teal-800);
+  --color-brand-subtle:    var(--color-teal-50);
+  --color-brand-border:    var(--color-teal-200);
+
+  /* Surface */
+  --color-bg:              var(--color-teal-25);
+  --color-surface:         var(--color-white);
+  --color-surface-raised:  var(--color-white);
+  --color-surface-overlay: rgba(255,255,255,0.95);
+
+  /* Text */
+  --color-text-primary:    var(--color-gray-900);
+  --color-text-secondary:  var(--color-gray-600);
+  --color-text-tertiary:   var(--color-gray-400);
+  --color-text-inverse:    var(--color-white);
+  --color-text-brand:      var(--color-teal-600);
+
+  /* Border */
+  --color-border:          var(--color-gray-200);
+  --color-border-strong:   var(--color-gray-300);
+  --color-border-brand:    var(--color-teal-300);
+
+  /* Semantic states */
+  --color-success:         var(--color-green-500);
+  --color-success-bg:      var(--color-green-50);
+  --color-success-border:  var(--color-green-300);
+  --color-success-text:    var(--color-green-700);
+
+  --color-warning:         var(--color-amber-500);
+  --color-warning-bg:      var(--color-amber-50);
+  --color-warning-border:  var(--color-amber-300);
+  --color-warning-text:    var(--color-amber-700);
+
+  --color-danger:          var(--color-red-500);
+  --color-danger-bg:       var(--color-red-50);
+  --color-danger-border:   var(--color-red-300);
+  --color-danger-text:     var(--color-red-700);
+
+  /* ──────────────────────────────────────────
+     TYPOGRAPHY
+  ────────────────────────────────────────── */
+
+  --font-display:  'Barlow Condensed', sans-serif;
+  --font-heading:  'Barlow', sans-serif;
+  --font-body:     'Inter', sans-serif;
+  --font-mono:     'JetBrains Mono', monospace;
+
+  /* Type Scale */
+  --text-xs:   0.75rem;    /* 12px */
+  --text-sm:   0.875rem;   /* 14px */
+  --text-base: 1rem;       /* 16px */
+  --text-lg:   1.125rem;   /* 18px */
+  --text-xl:   1.25rem;    /* 20px */
+  --text-2xl:  1.5rem;     /* 24px */
+  --text-3xl:  1.875rem;   /* 30px */
+  --text-4xl:  2.25rem;    /* 36px */
+  --text-5xl:  3rem;       /* 48px */
+  --text-6xl:  3.75rem;    /* 60px */
+  --text-7xl:  4.5rem;     /* 72px */
+
+  /* Line Heights */
+  --leading-tight:   1.2;
+  --leading-snug:    1.35;
+  --leading-normal:  1.5;
+  --leading-relaxed: 1.65;
+
+  /* Letter Spacing */
+  --tracking-tight:  -0.02em;
+  --tracking-normal:  0;
+  --tracking-wide:    0.04em;
+  --tracking-wider:   0.08em;
+  --tracking-widest:  0.12em;
+
+  /* Font Weights */
+  --weight-light:     300;
+  --weight-regular:   400;
+  --weight-medium:    500;
+  --weight-semibold:  600;
+  --weight-bold:      700;
+  --weight-extrabold: 800;
+  --weight-black:     900;
+
+  /* ──────────────────────────────────────────
+     SPACING
+  ────────────────────────────────────────── */
+
+  --space-1:   4px;
+  --space-2:   8px;
+  --space-3:  12px;
+  --space-4:  16px;
+  --space-5:  20px;
+  --space-6:  24px;
+  --space-8:  32px;
+  --space-10: 40px;
+  --space-12: 48px;
+  --space-16: 64px;
+  --space-20: 80px;
+  --space-24: 96px;
+
+  /* ──────────────────────────────────────────
+     RADIUS
+  ────────────────────────────────────────── */
+
+  --radius-sm:   4px;
+  --radius-md:   8px;
+  --radius-lg:  12px;
+  --radius-xl:  16px;
+  --radius-2xl: 24px;
+  --radius-full: 9999px;
+
+  /* ──────────────────────────────────────────
+     SHADOWS / ELEVATION
+  ────────────────────────────────────────── */
+
+  --shadow-xs:  0 1px 2px rgba(28, 98, 120, 0.06);
+  --shadow-sm:  0 2px 8px rgba(28, 98, 120, 0.08);
+  --shadow-md:  0 4px 16px rgba(28, 98, 120, 0.10);
+  --shadow-lg:  0 8px 32px rgba(28, 98, 120, 0.12);
+  --shadow-xl:  0 16px 48px rgba(28, 98, 120, 0.14);
+
+  /* ──────────────────────────────────────────
+     MOTION
+  ────────────────────────────────────────── */
+
+  --ease-standard:   cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-enter:      cubic-bezier(0, 0, 0.2, 1);
+  --ease-exit:       cubic-bezier(0.4, 0, 1, 1);
+
+  --duration-fast:   150ms;
+  --duration-base:   250ms;
+  --duration-slow:   400ms;
+
+  /* ──────────────────────────────────────────
+     SEMANTIC TYPE ROLES
+  ────────────────────────────────────────── */
+}
+
+/* Heading roles */
+.display-1 {
+  font-family: var(--font-display);
+  font-size: var(--text-7xl);
+  font-weight: var(--weight-black);
+  line-height: var(--leading-tight);
+  letter-spacing: var(--tracking-tight);
+}
+.display-2 {
+  font-family: var(--font-display);
+  font-size: var(--text-6xl);
+  font-weight: var(--weight-extrabold);
+  line-height: var(--leading-tight);
+  letter-spacing: var(--tracking-tight);
+}
+.h1 {
+  font-family: var(--font-heading);
+  font-size: var(--text-5xl);
+  font-weight: var(--weight-bold);
+  line-height: var(--leading-tight);
+}
+.h2 {
+  font-family: var(--font-heading);
+  font-size: var(--text-4xl);
+  font-weight: var(--weight-bold);
+  line-height: var(--leading-snug);
+}
+.h3 {
+  font-family: var(--font-heading);
+  font-size: var(--text-3xl);
+  font-weight: var(--weight-semibold);
+  line-height: var(--leading-snug);
+}
+.h4 {
+  font-family: var(--font-heading);
+  font-size: var(--text-2xl);
+  font-weight: var(--weight-semibold);
+  line-height: var(--leading-normal);
+}
+.h5 {
+  font-family: var(--font-heading);
+  font-size: var(--text-xl);
+  font-weight: var(--weight-medium);
+  line-height: var(--leading-normal);
+}
+.h6 {
+  font-family: var(--font-heading);
+  font-size: var(--text-lg);
+  font-weight: var(--weight-medium);
+  line-height: var(--leading-normal);
+}
+.label {
+  font-family: var(--font-body);
+  font-size: var(--text-xs);
+  font-weight: var(--weight-semibold);
+  letter-spacing: var(--tracking-widest);
+  text-transform: uppercase;
+}
+.body-lg  { font-family: var(--font-body); font-size: var(--text-lg); line-height: var(--leading-relaxed); }
+.body     { font-family: var(--font-body); font-size: var(--text-base); line-height: var(--leading-normal); }
+.body-sm  { font-family: var(--font-body); font-size: var(--text-sm); line-height: var(--leading-normal); }
+.caption  { font-family: var(--font-body); font-size: var(--text-xs); line-height: var(--leading-normal); color: var(--color-text-secondary); }
+.mono     { font-family: var(--font-mono); font-size: var(--text-sm); }

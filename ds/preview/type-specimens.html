@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  body { margin: 0; background: var(--color-bg); font-family: var(--font-body); padding: 20px 24px; }
+  .section { margin-bottom: 20px; }
+  .section-title { font-family: var(--font-body); font-size: 11px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--color-gray-400); margin-bottom: 10px; }
+  .weights { display: flex; flex-direction: column; gap: 4px; }
+  .weight-row { display: flex; align-items: center; gap: 16px; }
+  .weight-label { font-family: var(--font-mono); font-size: 10px; color: var(--color-gray-400); width: 96px; flex-shrink: 0; }
+  .pair { display: flex; gap: 24px; }
+  .pair-col { flex: 1; }
+</style>
+</head>
+<body>
+<div class="pair">
+  <div class="pair-col">
+    <div class="section-title">Barlow — Heading</div>
+    <div class="weights">
+      <div class="weight-row"><div class="weight-label">300 Light</div><span style="font-family:'Barlow';font-size:18px;font-weight:300;color:#374151">Orçamento Pessoal</span></div>
+      <div class="weight-row"><div class="weight-label">400 Regular</div><span style="font-family:'Barlow';font-size:18px;font-weight:400;color:#374151">Orçamento Pessoal</span></div>
+      <div class="weight-row"><div class="weight-label">500 Medium</div><span style="font-family:'Barlow';font-size:18px;font-weight:500;color:#1F2937">Orçamento Pessoal</span></div>
+      <div class="weight-row"><div class="weight-label">600 SemiBold</div><span style="font-family:'Barlow';font-size:18px;font-weight:600;color:#1F2937">Orçamento Pessoal</span></div>
+      <div class="weight-row"><div class="weight-label">700 Bold</div><span style="font-family:'Barlow';font-size:18px;font-weight:700;color:#111827">Orçamento Pessoal</span></div>
+      <div class="weight-row"><div class="weight-label">800 ExtraBold</div><span style="font-family:'Barlow';font-size:18px;font-weight:800;color:#111827">Orçamento Pessoal</span></div>
+      <div class="weight-row"><div class="weight-label">900 Black</div><span style="font-family:'Barlow';font-size:18px;font-weight:900;color:#1C6278">Orçamento Pessoal</span></div>
+    </div>
+  </div>
+  <div class="pair-col">
+    <div class="section-title">Inter — Body</div>
+    <div class="weights">
+      <div class="weight-row"><div class="weight-label">300 Light</div><span style="font-family:'Inter';font-size:15px;font-weight:300;color:#374151">Recuperação financeira</span></div>
+      <div class="weight-row"><div class="weight-label">400 Regular</div><span style="font-family:'Inter';font-size:15px;font-weight:400;color:#374151">Recuperação financeira</span></div>
+      <div class="weight-row"><div class="weight-label">500 Medium</div><span style="font-family:'Inter';font-size:15px;font-weight:500;color:#1F2937">Recuperação financeira</span></div>
+      <div class="weight-row"><div class="weight-label">600 SemiBold</div><span style="font-family:'Inter';font-size:15px;font-weight:600;color:#1F2937">Recuperação financeira</span></div>
+      <div class="weight-row"><div class="weight-label">700 Bold</div><span style="font-family:'Inter';font-size:15px;font-weight:700;color:#111827">Recuperação financeira</span></div>
+    </div>
+    <div class="section-title" style="margin-top:14px">JetBrains Mono — Figures</div>
+    <div class="weights">
+      <div class="weight-row"><div class="weight-label">400 Regular</div><span style="font-family:'JetBrains Mono';font-size:14px;color:#1C6278">R$ 12.480,00</span></div>
+      <div class="weight-row"><div class="weight-label">500 Medium</div><span style="font-family:'JetBrains Mono';font-size:14px;font-weight:500;color:#1C6278">R$ 12.480,00</span></div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

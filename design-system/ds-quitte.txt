@@ -1,0 +1,90 @@
+# Quitte Design System v1.0 - Specification File
+
+## 1. Brand Essence & UI Logic
+* **Concept:** Financial relief through the 50-30-20 methodology.
+* **Visual Strategy:** Soft UI, high whitespace, reduced cognitive load.
+* **Mobile-First:** All components must be responsive by default (PWA optimized).
+
+---
+
+## 2. Tailwind Configuration Tokens (JSON)
+
+```json
+{
+  "theme": {
+    "extend": {
+      "colors": {
+        "brand": {
+          "primary": "#0D47A1",    // Deep Teal - Trust & Calm
+          "success": "#00C853",    // Resolution
+          "background": "#F8FAFC"  // Anti-anxiety Neutral
+        },
+        "methodology": {
+          "needs": "#2979FF",      // 50% - Essential
+          "wants": "#7C4DFF",      // 30% - Life/Aspiration
+          "recovery": "#FFB300"    // 20% - Debt/Future (Amber)
+        },
+        "feedback": {
+          "error": "#FF5252",
+          "warning": "#FFD740",
+          "info": "#2196F3"
+        }
+      },
+      "borderRadius": {
+        "soft": "16px",
+        "pill": "9999px"
+      },
+      "boxShadow": {
+        "card": "0 4px 20px -2px rgba(13, 71, 161, 0.08)",
+        "floating": "0 10px 30px -5px rgba(0, 0, 0, 0.1)"
+      },
+      "fontFamily": {
+        "sans": ["Inter", "Montserrat", "sans-serif"]
+      }
+    }
+  }
+}
+```
+
+---
+
+## 3. UI Component Specifications
+
+### A. Layout & Grid
+* **Max-Width:** Desktop (1280px), Mobile (100% viewport).
+* **Padding Scale:** Mobile: 16px (p-4), Tablet/Desktop: 32px (p-8).
+* **Container Strategy:** Flexbox/Grid centering with `mx-auto`.
+
+### B. Typography Hierarchy
+| Role | Element | Size | Weight | Line Height |
+| :--- | :--- | :--- | :--- | :--- |
+| H1 (Main Title) | `h1` | 24px (text-2xl) | 700 (bold) | 1.2 |
+| H2 (Section) | `h2` | 20px (text-xl) | 600 (semibold) | 1.3 |
+| Body (Regular) | `p` | 16px (text-base) | 400 (regular) | 1.5 |
+| Label (Tiny) | `span` | 12px (text-xs) | 500 (medium) | 1.0 |
+
+### C. Critical Components (Behaviors)
+1.  **Progress Bars (The Recovery Tracker):**
+    * Rounded full, height: 8px.
+    * Background: `gray-200`.
+    * Foreground: Gradient from `brand.primary` to `brand.success`.
+2.  **Action Cards:**
+    * Background: `white`.
+    * Border: `1px solid brand.background`.
+    * Interaction: Subtle scale up (scale-102) on touch/hover.
+3.  **Bottom Navigation (Mobile):**
+    * Blur effect: `backdrop-blur-md bg-white/80`.
+    * Icons: Lucide-react (24px).
+    * Active State: `text-brand-primary` with a 4px dot indicator below.
+
+---
+
+## 4. Accessibility & Semantics (WCAG 2.1 AA)
+* **Contrast:** Min ratio 4.5:1 for all text.
+* **Touch Targets:** Buttons must be at least 44x44px.
+* **States:** All interactive elements must have clear `:focus-visible` styles (outline-offset 2px).
+
+---
+
+## 5. Implementation Instructions (Claude Code / Antigravity)
+> "When generating React components, prioritize functional components with Tailwind classes. Encapsulate logical units into custom hooks (e.g., `useFinancialData`). Use `clsx` or `tailwind-merge` for dynamic class management. All images should be lazy-loaded, and SVG icons must have `aria-hidden='true'` if decorative."

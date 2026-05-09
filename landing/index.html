@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quitte — Recuperação Financeira Assistida</title>
+  <meta name="description" content="A Quitte transforma a paralisia do endividamento em um plano de ação claro. Diagnóstico inteligente, metodologia 50-30-20 e acompanhamento semanal via WhatsApp.">
+  <link rel="icon" href="assets/quitte-marca.png" type="image/png">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<!-- ════════ NAVBAR ════════ -->
+<nav class="navbar" id="navbar">
+  <div class="container">
+    <a href="#" class="navbar-brand">
+      <img src="assets/quitte-logo-br.png" alt="Quitte" class="navbar-logo navbar-logo-white">
+      <img src="assets/quitte-logo-az.png" alt="Quitte" class="navbar-logo navbar-logo-dark">
+    </a>
+    <div class="navbar-links" id="navbar-links">
+      <a href="#problema">O Problema</a>
+      <a href="#funcionalidades">Funcionalidades</a>
+      <a href="#metodo">Método</a>
+      <a href="#depoimentos">Depoimentos</a>
+      <button class="btn-nav btn-nav-outline" id="btn-login">Entrar</button>
+      <button class="btn-nav btn-nav-primary" id="btn-signup">Começar grátis</button>
+    </div>
+    <button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="Menu">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
+    </button>
+  </div>
+</nav>
+
+<!-- ════════ HERO ════════ -->
+<section class="hero" id="hero">
+  <div class="container">
+    <div class="hero-content">
+      <div class="hero-badge">
+        <span class="hero-badge-dot"></span>
+        Vagas abertas para o programa beta
+      </div>
+      <h1>Saia das dívidas.<br>Recupere o <span>controle.</span></h1>
+      <p class="hero-desc">A Quitte transforma a paralisia do endividamento em um plano de ação claro e semanal — com diagnóstico inteligente, IA e a metodologia 50-30-20.</p>
+      <div class="hero-actions">
+        <a href="#cta" class="btn-hero btn-hero-primary" id="hero-cta">Quero me recuperar</a>
+        <a href="#como-funciona" class="btn-hero btn-hero-ghost" id="hero-learn">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8" fill="currentColor" stroke="none"/></svg>
+          Como funciona
+        </a>
+      </div>
+      <div class="hero-proof">
+        <div class="hero-proof-item">
+          <span class="hero-proof-value">79%</span>
+          <span class="hero-proof-label">das famílias endividadas</span>
+        </div>
+        <div class="hero-proof-item">
+          <span class="hero-proof-value">50-30-20</span>
+          <span class="hero-proof-label">metodologia validada</span>
+        </div>
+        <div class="hero-proof-item">
+          <span class="hero-proof-value">100%</span>
+          <span class="hero-proof-label">foco em quitação</span>
+        </div>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <img src="assets/hero-dashboard.png" alt="Dashboard Quitte — visão geral da recuperação financeira" class="hero-img">
+    </div>
+  </div>
+</section>
+
+<!-- ════════ SOCIAL PROOF BAR ════════ -->
+<section class="social-proof">
+  <div class="container">
+    <span class="social-proof-text">Metodologia validada por</span>
+    <div class="social-proof-logos">
+      <span>Open Finance</span>
+      <span>Banco Central</span>
+      <span>CDC</span>
+      <span>Lei 14.181</span>
+    </div>
+  </div>
+</section>
+
+<!-- ════════ PROBLEM ════════ -->
+<section class="section problem" id="problema">
+  <div class="container">
+    <div class="fade-up">
+      <div class="section-label">O problema</div>
+      <h2 class="section-title">O Brasil vive uma crise de endividamento crônica</h2>
+      <p class="section-sub">Milhões de brasileiros estão presos em um ciclo de dívidas. As soluções atuais resolvem pontualmente — mas não a causa raiz. A Quitte é diferente.</p>
+    </div>
+    <div class="problem-stats fade-up">
+      <div class="stat-card">
+        <div class="stat-value">79%</div>
+        <div class="stat-label">das famílias brasileiras com algum tipo de dívida</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value">30%</div>
+        <div class="stat-label">com contas em atraso há mais de 90 dias</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value">450%</div>
+        <div class="stat-label">juros anuais no rotativo do cartão de crédito</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value">3x</div>
+        <div class="stat-label">reincidência em quem usa soluções transacionais</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════ FEATURES ════════ -->
+<section class="section features" id="funcionalidades">
+  <div class="container">
+    <div class="fade-up">
+      <div class="section-label">Funcionalidades</div>
+      <h2 class="section-title">Tudo que você precisa para sair das dívidas</h2>
+      <p class="section-sub" style="margin:0 auto;">Um sistema completo de recuperação financeira — não apenas mais um app de gestão.</p>
+    </div>
+    <div class="features-grid">
+      <div class="feature-card fade-up">
+        <div class="feature-icon" style="background:var(--teal-50);color:var(--teal-600);">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/><path d="M11 8v6"/><path d="M8 11h6"/></svg>
+        </div>
+        <h3>Diagnóstico Inteligente</h3>
+        <p>Anamnese financeira completa via Open Finance. Identificamos seu mínimo existencial e priorizamos dívidas por custo e risco patrimonial.</p>
+      </div>
+      <div class="feature-card fade-up">
+        <div class="feature-icon" style="background:var(--green-50);color:var(--green-700);">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
+        </div>
+        <h3>Plano de Ação Semanal</h3>
+        <p>Micro-tarefas entregues via WhatsApp. Reduzimos a carga cognitiva ao focar no próximo passo — não na complexidade total.</p>
+      </div>
+      <div class="feature-card fade-up">
+        <div class="feature-icon" style="background:#FEF3C7;color:var(--amber-700);">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a4 4 0 0 1 4 4c0 1.95-1.4 3.58-3.25 3.93"/><path d="M8 6a4 4 0 0 1 3.25 1.93"/><rect x="3" y="14" width="18" height="7" rx="2"/><path d="M12 14v7"/><path d="M7.5 14v.01"/><path d="M16.5 14v.01"/></svg>
+        </div>
+        <h3>Orçamento com IA</h3>
+        <p>Alertas proativos sobre riscos de "furo de caixa". A IA sugere cortes e age como um conselheiro financeiro pessoal.</p>
+      </div>
+      <div class="feature-card fade-up">
+        <div class="feature-icon" style="background:var(--teal-50);color:var(--teal-500);">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="22" x2="21" y2="22"/><line x1="6" y1="18" x2="6" y2="11"/><line x1="10" y1="18" x2="10" y2="11"/><line x1="14" y1="18" x2="14" y2="11"/><line x1="18" y1="18" x2="18" y2="11"/><polygon points="12 2 20 8 4 8"/></svg>
+        </div>
+        <h3>Open Finance Integrado</h3>
+        <p>Conecte suas contas e tenha um mapa claro da sua vida financeira. Dados sincronizados e seguros, conforme a LGPD.</p>
+      </div>
+      <div class="feature-card fade-up">
+        <div class="feature-icon" style="background:var(--green-50);color:var(--green-700);">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/><path d="m9 13-2 2 2 2"/><path d="m17 13-2 2 2 2"/></svg>
+        </div>
+        <h3>Educação Contextual</h3>
+        <p>Microaulas relevantes ao seu momento. Aprenda sobre o CDC, Lei do Superendividamento e seus direitos como consumidor.</p>
+      </div>
+      <div class="feature-card fade-up">
+        <div class="feature-icon" style="background:#FEF2F2;color:var(--red-700);">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
+        </div>
+        <h3>Segurança Total</h3>
+        <p>Criptografia end-to-end, dados hospedados no Brasil (AWS São Paulo) e conformidade total com LGPD.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════ HOW IT WORKS ════════ -->
+<section class="section how-it-works" id="como-funciona">
+  <div class="container" style="text-align:center;">
+    <div class="fade-up">
+      <div class="section-label">Como funciona</div>
+      <h2 class="section-title">4 passos para a recuperação financeira</h2>
+      <p class="section-sub" style="margin:0 auto;">Simples, guiado e sem julgamento. A Quitte caminha ao seu lado.</p>
+    </div>
+    <div class="steps">
+      <div class="step fade-up">
+        <div class="step-num">1</div>
+        <h4>Conecte suas contas</h4>
+        <p>Via Open Finance ou upload de extratos. Tudo automático e seguro.</p>
+      </div>
+      <div class="step fade-up">
+        <div class="step-num">2</div>
+        <h4>Receba o diagnóstico</h4>
+        <p>A IA mapeia sua situação, prioriza dívidas e identifica oportunidades.</p>
+      </div>
+      <div class="step fade-up">
+        <div class="step-num">3</div>
+        <h4>Siga o plano semanal</h4>
+        <p>Micro-tarefas no WhatsApp. Uma ação por vez, sem sobrecarga.</p>
+      </div>
+      <div class="step fade-up">
+        <div class="step-num">4</div>
+        <h4>Acompanhe o progresso</h4>
+        <p>Veja suas dívidas diminuindo e celebre cada conquista.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════ METHOD 50-30-20 ════════ -->
+<section class="section method" id="metodo">
+  <div class="container" style="text-align:center;">
+    <div class="fade-up">
+      <div class="section-label">Metodologia</div>
+      <h2 class="section-title">O método 50-30-20 adaptado para quem quer quitar</h2>
+      <p class="section-sub" style="margin:0 auto;">Uma fórmula comprovada, ajustada para a realidade de quem precisa se recuperar financeiramente.</p>
+    </div>
+    <div class="method-grid">
+      <div class="method-card fade-up">
+        <div class="method-pct" style="color:var(--teal-300);">50%</div>
+        <h3>Necessidades</h3>
+        <p>Gastos essenciais para sua sobrevivência: moradia, alimentação, saúde e transporte.</p>
+      </div>
+      <div class="method-card fade-up">
+        <div class="method-pct" style="color:var(--teal-200);">30%</div>
+        <h3>Desejos</h3>
+        <p>Gastos flexíveis e estilo de vida. Ajustamos juntos para liberar recursos para quitação.</p>
+      </div>
+      <div class="method-card fade-up">
+        <div class="method-pct" style="color:var(--green-500);">20%</div>
+        <h3>Dívidas e Futuro</h3>
+        <p>100% focado na amortização de débitos priorizados. Cada real conta para sua liberdade.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════ TESTIMONIALS ════════ -->
+<section class="section testimonials" id="depoimentos">
+  <div class="container">
+    <div class="fade-up">
+      <div class="section-label">Depoimentos</div>
+      <h2 class="section-title">Quem usa, recomenda</h2>
+      <p class="section-sub" style="margin:0 auto;">Histórias reais de pessoas que recuperaram o controle da vida financeira.</p>
+    </div>
+    <div class="testimonials-grid">
+      <div class="testimonial fade-up">
+        <div class="testimonial-stars">★★★★★</div>
+        <p>"Eu estava paralisada com R$ 35 mil em dívidas. O plano semanal me deu um caminho claro. Em 8 meses, já quitei 60%."</p>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar" style="background:var(--teal-600);">AS</div>
+          <div>
+            <div class="testimonial-name">Amanda Silva</div>
+            <div class="testimonial-role">Analista de Marketing, São Paulo</div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial fade-up">
+        <div class="testimonial-stars">★★★★★</div>
+        <p>"Como RH, vi a produtividade do time aumentar depois que implementamos a Quitte como benefício. O impacto é real."</p>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar" style="background:var(--teal-400);">RC</div>
+          <div>
+            <div class="testimonial-name">Ricardo Costa</div>
+            <div class="testimonial-role">Head de RH, Tech Company</div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial fade-up">
+        <div class="testimonial-stars">★★★★★</div>
+        <p>"As micro-tarefas no WhatsApp são geniais. Não preciso abrir outro app. Cada semana sinto que estou mais perto da liberdade."</p>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar" style="background:var(--green-700);">FM</div>
+          <div>
+            <div class="testimonial-name">Fernando Mendes</div>
+            <div class="testimonial-role">Professor, Recife</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════ CTA ════════ -->
+<section class="cta" id="cta">
+  <div class="container">
+    <div class="cta-box fade-up">
+      <h2>Comece sua recuperação financeira hoje</h2>
+      <p>Cadastre-se gratuitamente e receba acesso antecipado ao programa de recuperação da Quitte.</p>
+      <form class="cta-form" id="cta-form" onsubmit="return handleSubmit(event)">
+        <input type="email" class="cta-input" id="cta-email" placeholder="Seu melhor e-mail" required aria-label="E-mail para cadastro">
+        <button type="submit" class="cta-submit" id="cta-submit">Quero participar</button>
+      </form>
+      <p class="cta-note">Gratuito. Sem cartão de crédito. Cancele quando quiser.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ════════ FOOTER ════════ -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <img src="assets/quitte-logo-br.png" alt="Quitte" class="footer-logo">
+        <p>Recuperação Financeira Assistida. A Quitte guia você com método, dados e tecnologia para sair do ciclo de endividamento.</p>
+      </div>
+      <div>
+        <h4>Produto</h4>
+        <ul>
+          <li><a href="#funcionalidades">Funcionalidades</a></li>
+          <li><a href="#metodo">Metodologia</a></li>
+          <li><a href="#como-funciona">Como funciona</a></li>
+          <li><a href="#">Para empresas</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Recursos</h4>
+        <ul>
+          <li><a href="#">Blog</a></li>
+          <li><a href="#">Central de ajuda</a></li>
+          <li><a href="#">Educação financeira</a></li>
+          <li><a href="#">Seus direitos</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Legal</h4>
+        <ul>
+          <li><a href="#">Termos de uso</a></li>
+          <li><a href="#">Política de privacidade</a></li>
+          <li><a href="#">LGPD</a></li>
+          <li><a href="#">Contato</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Quitte. Todos os direitos reservados.</span>
+      <span>Feito com 💚 no Brasil</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+// ── Navbar scroll effect ──
+const navbar = document.getElementById('navbar');
+window.addEventListener('scroll', () => {
+  navbar.classList.toggle('scrolled', window.scrollY > 60);
+});
+
+// ── Scroll animation ──
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach((entry, i) => {
+    if (entry.isIntersecting) {
+      setTimeout(() => entry.target.classList.add('visible'), i * 80);
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+
+document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+
+// ── Form handling ──
+function handleSubmit(e) {
+  e.preventDefault();
+  const email = document.getElementById('cta-email').value;
+  const btn = document.getElementById('cta-submit');
+  btn.textContent = '✓ Cadastrado!';
+  btn.style.background = '#10B981';
+  btn.style.color = '#fff';
+  setTimeout(() => {
+    btn.textContent = 'Quero participar';
+    btn.style.background = '';
+    btn.style.color = '';
+    document.getElementById('cta-email').value = '';
+  }, 3000);
+  return false;
+}
+
+// ── Smooth scroll for anchor links ──
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    const target = document.querySelector(a.getAttribute('href'));
+    if (target) {
+      e.preventDefault();
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  });
+});
+
+// ── Counter animation for stat values ──
+const statObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const el = entry.target;
+      const text = el.textContent;
+      const match = text.match(/(\d+)/);
+      if (match) {
+        const target = parseInt(match[1]);
+        const suffix = text.replace(match[1], '');
+        let current = 0;
+        const step = Math.ceil(target / 40);
+        const interval = setInterval(() => {
+          current = Math.min(current + step, target);
+          el.textContent = suffix.indexOf('%') > -1 || suffix.indexOf('x') > -1
+            ? current + suffix.replace(/\d+/, '')
+            : text.replace(match[1], current);
+          if (current >= target) {
+            el.textContent = text;
+            clearInterval(interval);
+          }
+        }, 30);
+      }
+      statObserver.unobserve(el);
+    }
+  });
+}, { threshold: 0.5 });
+
+document.querySelectorAll('.stat-value').forEach(el => statObserver.observe(el));
+</script>
+
+</body>
+</html>

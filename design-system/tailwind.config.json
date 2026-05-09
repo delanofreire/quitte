@@ -1,0 +1,38 @@
+{
+    "theme": {
+        "extend": {
+            "colors": {
+                "brand": {
+                    "primary": "#0D47A1", // Deep Teal - Trust & Calm
+                    "success": "#00C853", // Resolution
+                    "background": "#F8FAFC" // Anti-anxiety Neutral
+                },
+                "methodology": {
+                    "needs": "#2979FF", // 50% - Essential
+                    "wants": "#7C4DFF", // 30% - Life/Aspiration
+                    "recovery": "#FFB300" // 20% - Debt/Future (Amber)
+                },
+                "feedback": {
+                    "error": "#FF5252",
+                    "warning": "#FFD740",
+                    "info": "#2196F3"
+                }
+            },
+            "borderRadius": {
+                "soft": "16px",
+                "pill": "9999px"
+            },
+            "boxShadow": {
+                "card": "0 4px 20px -2px rgba(13, 71, 161, 0.08)",
+                "floating": "0 10px 30px -5px rgba(0, 0, 0, 0.1)"
+            },
+            "fontFamily": {
+                "sans": [
+                    "Inter",
+                    "Montserrat",
+                    "sans-serif"
+                ]
+            }
+        }
+    }
+}

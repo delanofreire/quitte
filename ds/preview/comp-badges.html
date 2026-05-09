@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  body { margin: 0; background: var(--color-bg); font-family: var(--font-body); padding: 20px 24px; }
+  .section-title { font-size: 11px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--color-gray-400); margin-bottom: 10px; }
+  .group { margin-bottom: 18px; }
+  .row { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+
+  /* Badge base */
+  .badge { display: inline-flex; align-items: center; gap: 5px; font-family: 'Inter', sans-serif; font-weight: 600; border-radius: 9999px; white-space: nowrap; }
+  .badge-sm { font-size: 11px; padding: 3px 9px; }
+  .badge-md { font-size: 12px; padding: 4px 12px; }
+  .badge-lg { font-size: 13px; padding: 6px 14px; }
+
+  /* Colors */
+  .badge-brand   { background: #E8F5F8; color: #1C6278; }
+  .badge-success { background: #D1FAE5; color: #047857; }
+  .badge-warning { background: #FEF3C7; color: #B45309; }
+  .badge-danger  { background: #FEE2E2; color: #B91C1C; }
+  .badge-neutral { background: #F3F4F6; color: #4B5563; }
+  .badge-dark    { background: #1C6278; color: #fff; }
+
+  /* Dot */
+  .dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
+  .dot-success { background: #10B981; }
+  .dot-warning { background: #F59E0B; }
+  .dot-danger  { background: #EF4444; }
+  .dot-brand   { background: #2D8BAD; }
+
+  /* Tag / chip */
+  .chip { display: inline-flex; align-items: center; gap: 6px; font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 500; padding: 5px 12px; border-radius: 8px; background: #fff; border: 1.5px solid #E5E7EB; color: #374151; cursor: pointer; transition: all 150ms; }
+  .chip:hover { border-color: #1C6278; color: #1C6278; background: #E8F5F8; }
+  .chip-active { border-color: #1C6278; color: #1C6278; background: #E8F5F8; }
+  .chip-remove { display: inline-flex; align-items: center; justify-content: center; width: 16px; height: 16px; border-radius: 50%; background: rgba(28,98,120,0.15); color: #1C6278; font-size: 11px; cursor: pointer; }
+
+  .divider { width: 100%; height: 1px; background: var(--color-gray-200); margin: 4px 0; }
+</style>
+</head>
+<body>
+
+<div class="group">
+  <div class="section-title">Status Badges</div>
+  <div class="row">
+    <span class="badge badge-md badge-success"><span class="dot dot-success"></span>Em dia</span>
+    <span class="badge badge-md badge-warning"><span class="dot dot-warning"></span>Atenção</span>
+    <span class="badge badge-md badge-danger"><span class="dot dot-danger"></span>Atrasado</span>
+    <span class="badge badge-md badge-brand"><span class="dot dot-brand"></span>Em progresso</span>
+    <span class="badge badge-md badge-neutral">Pendente</span>
+    <span class="badge badge-md badge-dark">Novo</span>
+  </div>
+</div>
+
+<div class="group">
+  <div class="section-title">Sizes</div>
+  <div class="row">
+    <span class="badge badge-sm badge-success"><span class="dot dot-success"></span>Pequeno</span>
+    <span class="badge badge-md badge-success"><span class="dot dot-success"></span>Médio</span>
+    <span class="badge badge-lg badge-success"><span class="dot dot-success"></span>Grande</span>
+  </div>
+</div>
+
+<div class="group">
+  <div class="section-title">Category Chips</div>
+  <div class="row">
+    <span class="chip chip-active">
+      <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
+      Habitação
+    </span>
+    <span class="chip">
+      <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+      Saúde
+    </span>
+    <span class="chip">
+      <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+      Transporte
+    </span>
+    <span class="chip">Alimentação</span>
+    <span class="chip">Lazer</span>
+    <span class="chip" style="border-color:#1C6278;color:#1C6278;background:#E8F5F8">
+      Educação
+      <span class="chip-remove">×</span>
+    </span>
+  </div>
+</div>
+
+<div class="group">
+  <div class="section-title">Priority Labels</div>
+  <div class="row">
+    <span class="badge badge-sm badge-danger">● URGENTE</span>
+    <span class="badge badge-sm badge-warning">● ALTO</span>
+    <span class="badge badge-sm badge-brand">● MÉDIO</span>
+    <span class="badge badge-sm badge-neutral">● BAIXO</span>
+  </div>
+</div>
+
+</body>
+</html>

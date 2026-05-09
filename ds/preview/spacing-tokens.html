@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  body { margin: 0; background: var(--color-bg); font-family: var(--font-body); padding: 20px 24px; }
+  .row { display: flex; gap: 24px; flex-wrap: wrap; }
+  .section-title { font-size: 11px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--color-gray-400); margin-bottom: 12px; }
+  .section { margin-bottom: 20px; }
+
+  /* Spacing */
+  .space-row { display: flex; align-items: center; gap: 10px; margin-bottom: 6px; }
+  .space-bar { background: var(--color-teal-400); height: 12px; border-radius: 2px; }
+  .space-label { font-family: var(--font-mono); font-size: 11px; color: var(--color-gray-500); }
+
+  /* Radii */
+  .radii-row { display: flex; gap: 12px; align-items: flex-end; }
+  .radius-item { text-align: center; }
+  .radius-box { background: var(--color-teal-100); border: 2px solid var(--color-teal-300); width: 40px; height: 40px; }
+  .radius-label { font-family: var(--font-mono); font-size: 10px; color: var(--color-gray-500); margin-top: 4px; }
+
+  /* Shadows */
+  .shadow-row { display: flex; gap: 16px; align-items: flex-end; }
+  .shadow-card { background: #fff; width: 64px; height: 48px; border-radius: 8px; display: flex; align-items: center; justify-content: center; }
+  .shadow-label { font-family: var(--font-mono); font-size: 10px; color: var(--color-gray-500); margin-top: 6px; text-align: center; }
+  .shadow-item { display: flex; flex-direction: column; align-items: center; }
+</style>
+</head>
+<body>
+
+<div class="section">
+  <div class="section-title">Spacing — 8px base grid</div>
+  <div>
+    <div class="space-row"><div class="space-bar" style="width:4px"></div><div class="space-label">space-1 · 4px</div></div>
+    <div class="space-row"><div class="space-bar" style="width:8px"></div><div class="space-label">space-2 · 8px</div></div>
+    <div class="space-row"><div class="space-bar" style="width:12px"></div><div class="space-label">space-3 · 12px</div></div>
+    <div class="space-row"><div class="space-bar" style="width:16px"></div><div class="space-label">space-4 · 16px</div></div>
+    <div class="space-row"><div class="space-bar" style="width:24px"></div><div class="space-label">space-6 · 24px</div></div>
+    <div class="space-row"><div class="space-bar" style="width:32px"></div><div class="space-label">space-8 · 32px</div></div>
+    <div class="space-row"><div class="space-bar" style="width:48px"></div><div class="space-label">space-12 · 48px</div></div>
+    <div class="space-row"><div class="space-bar" style="width:64px"></div><div class="space-label">space-16 · 64px</div></div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="section">
+    <div class="section-title">Border Radius</div>
+    <div class="radii-row">
+      <div class="radius-item"><div class="radius-box" style="border-radius:4px"></div><div class="radius-label">sm·4px</div></div>
+      <div class="radius-item"><div class="radius-box" style="border-radius:8px"></div><div class="radius-label">md·8px</div></div>
+      <div class="radius-item"><div class="radius-box" style="border-radius:12px"></div><div class="radius-label">lg·12px</div></div>
+      <div class="radius-item"><div class="radius-box" style="border-radius:16px"></div><div class="radius-label">xl·16px</div></div>
+      <div class="radius-item"><div class="radius-box" style="border-radius:24px"></div><div class="radius-label">2xl·24px</div></div>
+      <div class="radius-item"><div class="radius-box" style="border-radius:9999px"></div><div class="radius-label">full</div></div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Elevation / Shadow</div>
+    <div class="shadow-row">
+      <div class="shadow-item"><div class="shadow-card" style="box-shadow:0 1px 2px rgba(28,98,120,0.06)"></div><div class="shadow-label">xs</div></div>
+      <div class="shadow-item"><div class="shadow-card" style="box-shadow:0 2px 8px rgba(28,98,120,0.08)"></div><div class="shadow-label">sm</div></div>
+      <div class="shadow-item"><div class="shadow-card" style="box-shadow:0 4px 16px rgba(28,98,120,0.10)"></div><div class="shadow-label">md</div></div>
+      <div class="shadow-item"><div class="shadow-card" style="box-shadow:0 8px 32px rgba(28,98,120,0.12)"></div><div class="shadow-label">lg</div></div>
+      <div class="shadow-item"><div class="shadow-card" style="box-shadow:0 16px 48px rgba(28,98,120,0.14)"></div><div class="shadow-label">xl</div></div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
