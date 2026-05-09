@@ -7,6 +7,7 @@
   <meta name="description" content="A Quitte transforma a paralisia do endividamento em um plano de ação claro. Diagnóstico inteligente, metodologia 50-30-20 e acompanhamento semanal via WhatsApp.">
   <link rel="icon" href="assets/quitte-marca.png" type="image/png">
   <link rel="stylesheet" href="styles.css">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
 <body>
 
@@ -23,7 +24,7 @@
       <a href="#metodo">Método</a>
       <a href="#depoimentos">Depoimentos</a>
       <button class="btn-nav btn-nav-outline" id="btn-login">Entrar</button>
-      <button class="btn-nav btn-nav-primary" id="btn-signup">Começar grátis</button>
+      <a href="#cta" class="btn-nav btn-nav-primary" id="btn-signup">Garantir minha vaga</a>
     </div>
     <button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="Menu">
       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
@@ -37,12 +38,12 @@
     <div class="hero-content">
       <div class="hero-badge">
         <span class="hero-badge-dot"></span>
-        Vagas abertas para o programa beta
+        🔥 Últimas vagas para o programa beta
       </div>
-      <h1>Saia das dívidas.<br>Recupere o <span>controle.</span></h1>
-      <p class="hero-desc">A Quitte transforma a paralisia do endividamento em um plano de ação claro e semanal — com diagnóstico inteligente, IA e a metodologia 50-30-20.</p>
+      <h1>Chega de dívidas.<br>Retome sua <span>liberdade.</span></h1>
+      <p class="hero-desc">Diagnóstico inteligente + plano semanal personalizado. A Quitte usa IA e a metodologia 50-30-20 para tirar você do vermelho — de verdade.</p>
       <div class="hero-actions">
-        <a href="#cta" class="btn-hero btn-hero-primary" id="hero-cta">Quero me recuperar</a>
+        <a href="#cta" class="btn-hero btn-hero-primary" id="hero-cta">Garantir minha vaga grátis →</a>
         <a href="#como-funciona" class="btn-hero btn-hero-ghost" id="hero-learn">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8" fill="currentColor" stroke="none"/></svg>
           Como funciona
@@ -277,13 +278,21 @@
 <section class="cta" id="cta">
   <div class="container">
     <div class="cta-box fade-up">
-      <h2>Comece sua recuperação financeira hoje</h2>
-      <p>Cadastre-se gratuitamente e receba acesso antecipado ao programa de recuperação da Quitte.</p>
-      <form class="cta-form" id="cta-form" onsubmit="return handleSubmit(event)">
-        <input type="email" class="cta-input" id="cta-email" placeholder="Seu melhor e-mail" required aria-label="E-mail para cadastro">
-        <button type="submit" class="cta-submit" id="cta-submit">Quero participar</button>
+      <h2>Sua recuperação financeira começa agora</h2>
+      <p>Junte-se a centenas de brasileiros que já estão retomando o controle. Vagas limitadas para o programa beta.</p>
+      <form class="cta-form" id="cta-form">
+        <div class="cta-fields">
+          <input type="text" class="cta-input" id="cta-name" placeholder="Seu nome completo" required aria-label="Nome completo" autocomplete="name">
+          <input type="email" class="cta-input" id="cta-email" placeholder="Seu melhor e-mail" required aria-label="E-mail" autocomplete="email">
+          <input type="tel" class="cta-input" id="cta-phone" placeholder="WhatsApp (ex: 11 99999-0000)" required aria-label="Telefone WhatsApp" autocomplete="tel">
+        </div>
+        <button type="submit" class="cta-submit" id="cta-submit">
+          <span class="cta-submit-text">Garantir minha vaga agora</span>
+          <span class="cta-submit-loading" style="display:none;">Cadastrando...</span>
+        </button>
       </form>
-      <p class="cta-note">Gratuito. Sem cartão de crédito. Cancele quando quiser.</p>
+      <div class="cta-feedback" id="cta-feedback" style="display:none;"></div>
+      <p class="cta-note">100% gratuito · Sem cartão · Cancele quando quiser</p>
     </div>
   </div>
 </section>
@@ -332,6 +341,12 @@
 </footer>
 
 <script>
+// ── Supabase client ──
+const SUPABASE_URL = 'https://bwobpmwbynwytbvbjcik.supabase.co';
+const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJ3b2JwbXdieW53eXRidmJqY2lrIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzgyOTYzMDksImV4cCI6MjA5Mzg3MjMwOX0.WSxHm6B4JBk8fXQvGvVA_C7dnkgz0g6Qc9WlSRRO7Us';
+const { createClient } = supabase;
+const supabaseClient = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
 // ── Navbar scroll effect ──
 const navbar = document.getElementById('navbar');
 window.addEventListener('scroll', () => {
@@ -350,22 +365,57 @@ const observer = new IntersectionObserver((entries) => {
 
 document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
 
-
-// ── Form handling ──
-function handleSubmit(e) {
+// ── Form handling with Supabase ──
+const ctaForm = document.getElementById('cta-form');
+ctaForm.addEventListener('submit', async (e) => {
   e.preventDefault();
-  const email = document.getElementById('cta-email').value;
+
+  const name = document.getElementById('cta-name').value.trim();
+  const email = document.getElementById('cta-email').value.trim();
+  const phone = document.getElementById('cta-phone').value.trim();
   const btn = document.getElementById('cta-submit');
-  btn.textContent = '✓ Cadastrado!';
-  btn.style.background = '#10B981';
-  btn.style.color = '#fff';
-  setTimeout(() => {
-    btn.textContent = 'Quero participar';
-    btn.style.background = '';
-    btn.style.color = '';
-    document.getElementById('cta-email').value = '';
-  }, 3000);
-  return false;
+  const feedback = document.getElementById('cta-feedback');
+  const textEl = btn.querySelector('.cta-submit-text');
+  const loadingEl = btn.querySelector('.cta-submit-loading');
+
+  // Show loading
+  textEl.style.display = 'none';
+  loadingEl.style.display = 'inline';
+  btn.disabled = true;
+  feedback.style.display = 'none';
+
+  try {
+    if (!supabaseClient) throw new Error('Conexão indisponível. Tente novamente.');
+
+    const { error } = await supabaseClient
+      .from('beta_signups')
+      .insert([{ full_name: name, email, phone }]);
+
+    if (error) {
+      if (error.code === '23505') {
+        showFeedback('⚠️ Esse e-mail já está cadastrado. Fique tranquilo, você já está na lista!', 'warning');
+      } else {
+        throw error;
+      }
+    } else {
+      showFeedback('✅ Cadastro confirmado! Você receberá novidades no seu e-mail em breve.', 'success');
+      ctaForm.reset();
+    }
+  } catch (err) {
+    console.error('Signup error:', err);
+    showFeedback('❌ Erro ao cadastrar. Verifique sua conexão e tente novamente.', 'error');
+  } finally {
+    textEl.style.display = 'inline';
+    loadingEl.style.display = 'none';
+    btn.disabled = false;
+  }
+});
+
+function showFeedback(message, type) {
+  const feedback = document.getElementById('cta-feedback');
+  feedback.textContent = message;
+  feedback.className = 'cta-feedback cta-feedback-' + type;
+  feedback.style.display = 'block';
 }
 
 // ── Smooth scroll for anchor links ──

@@ -821,14 +821,20 @@ button {
 .cta-form {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 16px;
   max-width: 460px;
   margin: 0 auto;
   position: relative;
 }
 
+.cta-fields {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
 .cta-input {
-  flex: 1;
+  width: 100%;
   padding: 14px 20px;
   border-radius: 10px;
   border: 2px solid rgba(255, 255, 255, .2);
@@ -850,19 +856,52 @@ button {
 }
 
 .cta-submit {
-  padding: 14px 32px;
+  width: 100%;
+  padding: 16px 32px;
   border-radius: 10px;
   background: var(--white);
   color: var(--teal-700);
-  font-size: 15px;
+  font-size: 16px;
   font-weight: 700;
   transition: all .25s var(--ease);
   white-space: nowrap;
 }
 
-.cta-submit:hover {
+.cta-submit:hover:not(:disabled) {
   transform: translateY(-2px);
   box-shadow: 0 8px 24px rgba(0, 0, 0, .15);
+}
+
+.cta-submit:disabled {
+  opacity: .7;
+  cursor: wait;
+}
+
+.cta-feedback {
+  font-size: 14px;
+  padding: 12px 16px;
+  border-radius: 10px;
+  margin-top: 4px;
+  position: relative;
+  text-align: center;
+}
+
+.cta-feedback-success {
+  background: rgba(16, 185, 129, .15);
+  color: #A7F3D0;
+  border: 1px solid rgba(16, 185, 129, .3);
+}
+
+.cta-feedback-warning {
+  background: rgba(245, 158, 11, .15);
+  color: #FDE68A;
+  border: 1px solid rgba(245, 158, 11, .3);
+}
+
+.cta-feedback-error {
+  background: rgba(239, 68, 68, .15);
+  color: #FCA5A5;
+  border: 1px solid rgba(239, 68, 68, .3);
 }
 
 .cta-note {
@@ -1028,10 +1067,6 @@ button {
 
   .cta-box h2 {
     font-size: 32px;
-  }
-
-  .cta-form {
-    flex-direction: row;
   }
 
   .footer-grid {
