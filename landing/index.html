@@ -23,8 +23,7 @@
       <a href="#funcionalidades">Funcionalidades</a>
       <a href="#metodo">Método</a>
       <a href="#depoimentos">Depoimentos</a>
-      <button class="btn-nav btn-nav-outline" id="btn-login">Entrar</button>
-      <a href="#cta" class="btn-nav btn-nav-primary" id="btn-signup">Garantir minha vaga</a>
+      <a href="#cta" class="btn-nav btn-nav-outline" id="btn-signup">Garantir minha vaga</a>
     </div>
     <button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="Menu">
       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
@@ -377,12 +376,27 @@ ctaForm.addEventListener('submit', async (e) => {
   const feedback = document.getElementById('cta-feedback');
   const textEl = btn.querySelector('.cta-submit-text');
   const loadingEl = btn.querySelector('.cta-submit-loading');
+  feedback.style.display = 'none';
+
+  // Validate before loading
+  if (name.length < 3) {
+    showFeedback('⚠️ Por favor, informe seu nome completo.', 'warning');
+    return;
+  }
+  if (!isValidEmail(email)) {
+    showFeedback('⚠️ Por favor, informe um e-mail válido.', 'warning');
+    return;
+  }
+  const phoneDigits = phone.replace(/\D/g, '');
+  if (phoneDigits.length < 10) {
+    showFeedback('⚠️ Por favor, informe um telefone válido com DDD.', 'warning');
+    return;
+  }
 
   // Show loading
   textEl.style.display = 'none';
   loadingEl.style.display = 'inline';
   btn.disabled = true;
-  feedback.style.display = 'none';
 
   try {
     if (!supabaseClient) throw new Error('Conexão indisponível. Tente novamente.');
@@ -458,6 +472,36 @@ const statObserver = new IntersectionObserver((entries) => {
 }, { threshold: 0.5 });
 
 document.querySelectorAll('.stat-value').forEach(el => statObserver.observe(el));
+
+// ── Input masks ──
+
+// Name: capitalize first letter of each word on blur
+const nameInput = document.getElementById('cta-name');
+nameInput.addEventListener('blur', () => {
+  nameInput.value = nameInput.value
+    .toLowerCase()
+    .replace(/(?:^|\s)\S/g, c => c.toUpperCase())
+    .trim();
+});
+
+// Phone: Brazilian mask (XX) XXXXX-XXXX
+const phoneInput = document.getElementById('cta-phone');
+phoneInput.addEventListener('input', () => {
+  let v = phoneInput.value.replace(/\D/g, '').slice(0, 11);
+  if (v.length > 6) {
+    v = `(${v.slice(0,2)}) ${v.slice(2,7)}-${v.slice(7)}`;
+  } else if (v.length > 2) {
+    v = `(${v.slice(0,2)}) ${v.slice(2)}`;
+  } else if (v.length > 0) {
+    v = `(${v}`;
+  }
+  phoneInput.value = v;
+});
+
+// Email validation helper
+function isValidEmail(email) {
+  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+}
 </script>
 
 </body>
